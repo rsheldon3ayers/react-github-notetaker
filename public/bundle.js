@@ -25467,6 +25467,10 @@
 
 	var _Home2 = _interopRequireDefault(_Home);
 
+	var _Profile = __webpack_require__(228);
+
+	var _Profile2 = _interopRequireDefault(_Profile);
+
 	var _reactRouter = __webpack_require__(166);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -25474,6 +25478,7 @@
 	module.exports = _react2.default.createElement(
 	  _reactRouter.Route,
 	  { path: '/', component: _Main2.default },
+	  _react2.default.createElement(_reactRouter.Route, { path: 'profile/:username', component: _Profile2.default }),
 	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default })
 	);
 
@@ -25540,6 +25545,204 @@
 	  }
 	});
 	module.exports = Home;
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(166);
+
+	var _Repos = __webpack_require__(229);
+
+	var _Repos2 = _interopRequireDefault(_Repos);
+
+	var _UserProfile = __webpack_require__(230);
+
+	var _UserProfile2 = _interopRequireDefault(_UserProfile);
+
+	var _Notes = __webpack_require__(231);
+
+	var _Notes2 = _interopRequireDefault(_Notes);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Profile = _react2.default.createClass({
+	  displayName: 'Profile',
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      notes: [1, 2, 3],
+	      bio: {
+	        name: 'John Wayne'
+	      },
+	      repos: ['a', 'b', 'c']
+	    };
+	  },
+	  render: function render() {
+
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'row' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'col-md-4' },
+	        _react2.default.createElement(_UserProfile2.default, { username: this.props.params.username, bio: this.state.bio })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'col-md-4' },
+	        _react2.default.createElement(_Repos2.default, { repos: this.state.repos })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'col-md-4' },
+	        _react2.default.createElement(_Notes2.default, { notes: this.state.notes })
+	      )
+	    );
+	  }
+	});
+
+	exports.default = Profile;
+
+/***/ },
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Repos = _react2.default.createClass({
+	  displayName: 'Repos',
+
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        'Repos'
+	      ),
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        ' REPOS: ',
+	        this.props.repos,
+	        ' '
+	      )
+	    );
+	  }
+	});
+
+	exports.default = Repos;
+
+/***/ },
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var UserProfile = _react2.default.createClass({
+	  displayName: 'UserProfile',
+
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        ' User Profile '
+	      ),
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        ' Username: ',
+	        this.props.username,
+	        ' '
+	      ),
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        ' Bio: ',
+	        this.props.bio.name,
+	        ' '
+	      )
+	    );
+	  }
+	});
+
+	exports.default = UserProfile;
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Notes = _react2.default.createClass({
+	  displayName: 'Notes',
+
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        ' Notes '
+	      ),
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        ' NOTES: ',
+	        this.props.notes,
+	        ' '
+	      )
+	    );
+	  }
+	});
+
+	exports.default = Notes;
 
 /***/ }
 /******/ ]);
