@@ -25605,6 +25605,10 @@
 	  componentWillUnmount: function componentWillUnmount() {
 	    this.unbind('notes');
 	  },
+	  handleAddNote: function handleAddNote(newNote) {
+	    this.ref.child(this.props.params.username).child(this.state.notes.length).set(newNote);
+	  },
+
 	  render: function render() {
 
 	    return _react2.default.createElement(
@@ -25623,7 +25627,10 @@
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'col-md-4' },
-	        _react2.default.createElement(_Notes2.default, { username: this.props.params.username, notes: this.state.notes })
+	        _react2.default.createElement(_Notes2.default, {
+	          username: this.props.params.username,
+	          notes: this.state.notes,
+	          addNote: this.handleAddNote })
 	      )
 	    );
 	  }
@@ -25746,6 +25753,10 @@
 
 	var _NotesList2 = _interopRequireDefault(_NotesList);
 
+	var _AddNotes = __webpack_require__(235);
+
+	var _AddNotes2 = _interopRequireDefault(_AddNotes);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Notes = _react2.default.createClass({
@@ -25753,7 +25764,8 @@
 
 	  propTypes: {
 	    username: _react2.default.PropTypes.string.isRequired,
-	    notes: _react2.default.PropTypes.array.isRequired
+	    notes: _react2.default.PropTypes.array.isRequired,
+	    addNote: _react2.default.PropTypes.func.isRequired
 
 	  },
 	  render: function render() {
@@ -25767,6 +25779,7 @@
 	        'Notes for ',
 	        this.props.username
 	      ),
+	      _react2.default.createElement(_AddNotes2.default, { username: this.props.username, addNote: this.props.addNote }),
 	      _react2.default.createElement(_NotesList2.default, { notes: this.props.notes })
 	    );
 	  }
@@ -26467,6 +26480,60 @@
 
 	module.exports = Firebase;
 
+
+/***/ },
+/* 235 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AddNote = _react2.default.createClass({
+	  displayName: 'AddNote',
+
+
+	  propTypes: {
+	    username: _react2.default.PropTypes.string.isRequired,
+	    addNote: _react2.default.PropTypes.func.isRequired
+	  },
+	  setRef: function setRef(ref) {
+	    this.note = ref;
+	  },
+	  handleSubmit: function handleSubmit() {
+	    var newNote = this.note.value;
+	    this.note.value = '';
+	    this.props.addNote(newNote);
+	  },
+
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'input-group' },
+	      _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Add New Note', ref: this.setRef }),
+	      _react2.default.createElement(
+	        'span',
+	        { className: 'input-group-btn' },
+	        _react2.default.createElement(
+	          'button',
+	          { className: 'btn btn-default', type: 'button', onClick: this.handleSubmit },
+	          'Submit'
+	        )
+	      )
+	    );
+	  }
+
+	});
+
+	exports.default = AddNote;
 
 /***/ }
 /******/ ]);
