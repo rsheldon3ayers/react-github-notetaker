@@ -1,25 +1,21 @@
-'use strict'
-import React from 'react'
-import NotesList from './NotesList'
-import AddNote from './AddNotes'
+import React from 'react';
+import NotesList from './NotesList';
+import AddNote from './AddNotes';
 
-const Notes = React.createClass({
-  propTypes: {
-    username: React.PropTypes.string.isRequired,
-    notes: React.PropTypes.array.isRequired,
-    addNote: React.PropTypes.func.isRequired
+const Notes = ({username, notes, addNote}) => {
+  return (
+    <div>
+      <h3> Notes for {username} </h3>
+      <AddNote username={username} addNote={addNote} />
+      <NotesList notes={notes} />
+    </div>
+  )
+}
 
-  },
-  render: function(){
+Notes.propTypes = {
+  username: React.PropTypes.string.isRequired,
+  notes: React.PropTypes.array.isRequired,
+  addNote: React.PropTypes.func.isRequired,
+}
 
-    return (
-      <div>
-        <h3>Notes for {this.props.username}</h3>
-        <AddNote username={this.props.username} addNote={this.props.addNote} />
-        <NotesList notes={this.props.notes} />
-      </div>
-      )
-  }
-});
-
-export default Notes
+export default Notes;
